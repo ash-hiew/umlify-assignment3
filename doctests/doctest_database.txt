@@ -1,0 +1,20 @@
+    """
+    >>> from database import Database
+    >>> db = Database()
+    >>> db.create_connection()
+    Connected to database
+    Database created
+    table created for database uml_components.db
+    >>> db.create_connection("test_database.db")
+    Connected to database
+    Database created
+    table created for database test_database.db
+    >>> db.drop_table()
+    Table dropped from database
+    >>> db.create_table()
+    table created for database test_database.db
+    >>> db.insert_data("..//mammals.py")
+    Components pickled and inserted into database
+    >>> db.remove_data("..//mammals.py")
+    mammals components removed from database
+    """

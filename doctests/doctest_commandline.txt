@@ -1,0 +1,202 @@
+        """
+	do_start function
+        >>> cl = CommandLine(True)
+        Connected to database
+        Database created
+        table created for database uml_components.db
+        >>> args = "-f test/test_class_1.py".split()
+        >>> cl.start([sys.argv[0]] + args)
+        Input file set to "test/test_class_1.py"
+        Running Umlify...
+        Quitting Umlify.
+
+        >>> args = "-f test/test_class_5.py -b".split()
+        >>> cl.start([sys.argv[0]] + args)
+        Input file set to "test/test_class_5.py"
+        Running Umlify...
+        Generating a bar chart
+        Quitting Umlify.
+
+        >>> args = "-f test/test_class_5.py -p Sunflower".split()
+        >>> cl.start([sys.argv[0]] + args)
+        Input file set to "test/test_class_5.py"
+        Running Umlify...
+        Generating a pie chart for component: Sunflower
+        Quitting Umlify.
+
+        >>> args = "-f test/test_class_5.py -p Orchid -b".split()
+        >>> cl.start([sys.argv[0]] + args)
+        Input file set to "test/test_class_5.py"
+        Running Umlify...
+        Generating a bar chart
+        Generating a pie chart for component: Orchid
+        Quitting Umlify.
+
+        >>> args = "-f".split()
+        >>> cl.start([sys.argv[0]] + args)
+        Traceback (most recent call last):
+            ...
+        Exception: You must provide a file name with "-f"
+
+        Usage: start -f <file> [-bc [output_file]|-pc [comp_name] [output_file]]
+        :param params: The commandline arguments and inputs
+        :return:
+        """
+
+        """
+	do_run function
+        >>> cl = CommandLine(True)
+        Connected to database
+        Database created
+        table created for database uml_components.db
+        >>> cl.do_run()
+        Please select an input path with "file" or "directory"
+
+        >>> cl.do_file("test/test_class_1.py")
+        Input file set to "test/test_class_1.py"
+        >>> cl.do_run()
+        Running Umlify...
+        """
+
+        """
+	check_input function
+        >>> cl = CommandLine(True)
+        Connected to database
+        Database created
+        table created for database uml_components.db
+        >>> cl._check_input()
+        Please select an input path with \"file\" or \"directory\"
+        False
+        >>> cl.do_file("test/test_class_1.py")
+        Input file set to "test/test_class_1.py"
+        >>> cl._check_input()
+        True
+
+        Check if an input has been set, if not then return a message and false
+        :return: True if an input file or directory has been set, False if not
+        """
+
+        """
+	do_bar_chart function
+        >>> cl = CommandLine(True)
+        Connected to database
+        Database created
+        table created for database uml_components.db
+        
+	>>> cl.do_bar_chart()
+        Please use "run" before trying to create a chart
+
+        >>> cl.do_file("test/test_class_1.py")
+        Input file set to "test/test_class_1.py"
+        
+	>>> cl.do_run()
+        Running Umlify...
+        
+	>>> cl.do_bar_chart()
+        Generating a bar chart
+        """
+
+        """
+	do_pie_chart function
+        >>> cl = CommandLine(True)
+        Connected to database
+        Database created
+        table created for database uml_components.db
+        
+	>>> cl.do_pie_chart()
+        Please use "run" before trying to create a chart
+
+        >>> cl.do_file("test/test_class_5.py")
+        Input file set to "test/test_class_5.py"
+        
+	>>> cl.do_run()
+        Running Umlify...
+        
+	>>> cl.do_pie_chart()
+        Generating pie charts for all components
+        
+	>>> cl.do_pie_chart("Sunflower")
+        Generating a pie chart for component: Sunflower
+        """
+
+        """
+	do_file function
+        >>> cl = CommandLine(True)
+        Connected to database
+        Database created
+        table created for database uml_components.db
+        
+	>>> cl.do_file(None)
+        Please enter a file to use as input
+        
+	>>> cl.do_file("test/test_class_1.py")
+        Input file set to "test/test_class_1.py"
+        """
+
+    """
+    >>> cl = CommandLine(ConsoleView(), True)
+    >>> cl.do_file("test/test_class_7.py")
+    Input file set to "test/test_class_7.py"
+    >>> cl.do_location()
+    Please enter a location for output files to be saved
+    >>> cl.do_location("output/test_output1/")
+    Output location set to "output/test_output1/"
+    >>> cl.do_run()
+    Running Umlify...
+    >>> cl.do_class_diagram()
+    Generating class diagram
+    >>> cl.do_location("output/test_output2")
+    Output location set to "output/test_output2"
+    >>> cl.do_run()
+    Running Umlify...
+    >>> cl.do_pie_chart()
+    Generating pie charts for all components
+    >>> cl.do_location("output\\test_output3")
+    Output location set to "output\test_output3"
+    >>> cl.do_run()
+    Running Umlify...
+    >>> cl.do_bar_chart()
+    Generating a bar chart
+    """
+
+        """
+	do_type function
+
+        >>> cl = CommandLine(True)
+        Connected to database
+        Database created
+        table created for database uml_components.db
+        
+        >>> cl.do_type(None)
+        Please enter a file type
+
+        >>> cl.do_type("png")
+        Output file type has been set to png
+
+        >>> cl.do_type("png")
+        The output file type is already png
+
+        >>> cl.do_type("pdf")
+        Output file type has been set to pdf
+
+        >>> cl.do_type(".png")
+        Output file type has been set to png
+
+        >>> cl.do_type(".DOT")
+        Output file type has been set to dot
+
+        >>> cl.do_type("invalid_type")
+        That file type is not supported, please pick one from: dot, png, pdf
+        """
+
+        """
+	do_quit function
+        >>> cl = CommandLine(True)
+        Connected to database
+        Database created
+        table created for database uml_components.db
+
+        >>> cl.do_quit()
+        Quitting Umlify.
+        True
+        """

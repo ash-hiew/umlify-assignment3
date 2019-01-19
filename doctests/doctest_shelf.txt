@@ -1,0 +1,15 @@
+    """
+    >>> from shelf import Shelf
+    >>> sh = Shelf("../tests/test_class_2.py")
+    >>> sh.write_shelf("test_shelve")
+    Class components of [test_class_2] serialized and stored to file successfully
+    >>> print(sh.read_shelf("test_shelve"))
+    Class Name: Person
+    Attribute: name
+    Attribute: age
+    Function: __init__
+    --------------------
+    <BLANKLINE>
+    >>> sh.write_shelf(None)
+    Shelf name not entered
+    """
